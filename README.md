@@ -1,4 +1,4 @@
 # ArbresParis
 Stage Python Greta
 
-Nadia, Christophe, Eric.
+La team : Nadia, Christophe, Eric.
