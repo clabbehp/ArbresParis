@@ -1,0 +1,48 @@
+#-------------------------------------------------------------------------------
+# Name:        module1
+# Purpose:
+#
+# Author:      Christophe
+#
+# Created:     13/06/2019
+# Copyright:   (c) klab 2019
+# Licence:     <your licence>
+#-------------------------------------------------------------------------------
+"# -> attention modifier les paramètres des variables : <cheminImport> et <repSave> "
+def main():
+    pass
+
+if __name__ == '__main__':
+    main()
+
+# imort librairie pandas
+import pandas
+import csv
+import numpy as np
+
+def chargeFichierArbres(A):
+    #télécharge le fichier "les-arbres.csv" avec selection des colonnes utilisable pour l’analyse du client
+    #chemin est entré en parametre dans le programme principal
+    df = pandas.read_csv(cheminImport,
+    usecols = ['IDBASE','ARRONDISSEMENT','DOMANIALITE','LIBELLEFRANCAIS','HAUTEUR (m)','geo_point_2d'],
+    dtype = {'IDBASE': int,'HAUTEUR (m)': int},
+    sep=';')
+    #change le nom de l'entete afin de supprimer les caracteres non autorisés
+    df.rename(columns={'HAUTEUR (m)': 'HAUTEUR_m'}, inplace=True)
+    return df
+
+def saveFichierArbres(df):
+    #df.to_csv(r'C:\data\BigData_ViaPython\Datas_arbres.csv
+    df=chargeFichierArbres(cheminImport)
+    repSauve=df.to_csv(repSave,
+    index = None, header=True, encoding = 'iso-8859-1',
+    sep=';')
+
+############# Programme principal   ###################
+cheminImport = "C:\data\BigData_ViaPython\les-arbres.csv"
+repSave = r"C:\data\BigData_ViaPython\Datas_arbres.csv"
+
+print('chargement fichier arbres:','\r',chargeFichierArbres(cheminImport))
+print('Fichier téléchargé')
+print('sauvegarde fichier arbres:','\r',saveFichierArbres(repSave))
+print('Sauvegarde effectuée')
